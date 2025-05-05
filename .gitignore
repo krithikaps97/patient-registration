@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Temporary files
+*.log
+*.temp
+*.tmp
+
+# IDE and editor files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Cache files
+.parcel-cache/
+.eslintcache
+.rpt2_cache/
+
+# Optional: Testing files
+coverage/
