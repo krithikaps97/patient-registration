@@ -7,4 +7,9 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['@electric-sql/pglite'],
   },
+  assetsInclude: ["**/*.sql"],
+  esbuild: {
+    target: "es2022",
+  },
+  
 })
