@@ -1,6 +1,9 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import Form from 'react-bootstrap/Form';
+import "../styles/form.css";
+import { Button, FloatingLabel } from "react-bootstrap";
 
 const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
@@ -27,37 +30,46 @@ function RegistrationForm({ db, onPatientAdded }: { db: any; onPatientAdded: () 
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="firstName"> First Name:</label>
-      <input type="text" {...register("firstName")} placeholder=" Enter First Name" />
-      <p>{errors.firstName?.message}</p>
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      
+      <FloatingLabel controlId="firstName" label="First Name" className="mb-3">
+        <Form.Control {...register("firstName")} type="text" placeholder="Enter First Name" />
+        <small>{errors.firstName?.message}</small>
+      </FloatingLabel>
 
-      <label htmlFor="lastName">Last Name:</label>
-      <input type="text" {...register("lastName")} placeholder="Enter Last Name" />
-      <p>{errors.lastName?.message}</p>
+      <FloatingLabel controlId="lastName" label="Last Name" className="mb-3">
+        <Form.Control {...register("lastName")} type="text" placeholder="Enter Last Name" />
+        <small>{errors.lastName?.message}</small>
+      </FloatingLabel>
 
-      <label htmlFor="age">Age:</label>
-      <input {...register("age")} type="number" placeholder="Enter Age" />
-      <p>{errors.age?.message}</p>
+      <FloatingLabel controlId="age" label="Age" className="mb-3">
+        <Form.Control {...register("age")} type="number" placeholder="Enter Age" />
+        <small>{errors.age?.message}</small>
+      </FloatingLabel>
+      
+      <FloatingLabel controlId="gender" label="Gender" className="mb-3">
+        <Form.Select aria-label="Default select gender" {...register("gender")}>
+            <option value="">Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </Form.Select>
+      </FloatingLabel>
 
-      <label htmlFor="gender">Gender:</label>
-      <select {...register("gender")}>
-        <option value="">Select Gender</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-      </select>
+     <FloatingLabel controlId="email" label="Email" className="mb-3">
+        <Form.Control {...register("email")} type="email" placeholder="Enter Email" />
+        <small>{errors.email?.message}</small>
+      </FloatingLabel>
 
-      <label htmlFor="email">Email:</label>
-      <input {...register("email")} type="email" placeholder="Enter Email" />
-      <p>{errors.email?.message}</p>
+      <FloatingLabel controlId="phone" label="Phone" className="mb-3">
+        <Form.Control {...register("phone")} type="tel" placeholder="Phone (10-digits)" />
+        <small>{errors.phone?.message}</small>
+      </FloatingLabel>
 
-      <label htmlFor="phone">Phone:</label>
-      <input type="tel" {...register("phone")} placeholder="Phone (10-digit)" />
-      <p>{errors.phone?.message}</p>
-
-      <button type="submit">Register</button>
-    </form>
+      <div className="d-flex justify-content-center">
+        <Button  variant="primary" type="submit">Register</Button>
+      </div>
+    </Form>
   );
 }
 
