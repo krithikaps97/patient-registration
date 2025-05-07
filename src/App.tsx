@@ -33,7 +33,7 @@ function App() {
   return db ? (
     <>
     <Header/>
-    <div className="container col-6">
+    <div className="container col-md-6">
     <div className="row justify-content-center align-items-center mt-5 pt-5">      
       <h2 id="form">Registration Form</h2>
       <RegistrationForm db={db} onPatientAdded={() => {setRefresh(!refresh); checkData();}} />
@@ -47,7 +47,7 @@ function App() {
     </div>
     </>
   ) : (
-    <p>Loading App...</p>
+    <div className="vh-100 d-flex justify-content-center align-items-center"><p>Loading App...</p></div>
     
   );
   

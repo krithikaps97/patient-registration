@@ -14,12 +14,13 @@
   th, td {
     padding: 12px;
     border: 1px solid #ddd;
-    text-align: left;
+    text-align: center;
   }
   
   th {
     background-color: #495057c7;
     color: white;
+    min-width: 7rem;
   }
   
   td:last-child {

@@ -23,7 +23,7 @@ function PatientList({ db, onPatientDeleted }: { db: any; onPatientDeleted: () =
   }, [db]);
 
   const handleDelete = async (id: number) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this patient?");
+    const confirmDelete = window.confirm(`Are you sure you want to delete this patient ${id}?`);
     
     if (confirmDelete) {
       await db.exec(`DELETE FROM patientsDetails WHERE id = ${id};`);
@@ -38,7 +38,7 @@ function PatientList({ db, onPatientDeleted }: { db: any; onPatientDeleted: () =
     <table>
       <thead>
         <tr>
-          <th>Id</th>
+          <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Age</th>
