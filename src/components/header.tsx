@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function Header() {
+function Header({ hasPatients }:any) {
   return (
     <Navbar fixed="top" expand="lg" bg="dark" data-bs-theme="dark" >
       <Container>
@@ -11,7 +11,7 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#form">Form</Nav.Link>
-            <Nav.Link href="#details">View Details</Nav.Link>
+            <Nav.Link href="#details" disabled={!hasPatients}>View Details</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

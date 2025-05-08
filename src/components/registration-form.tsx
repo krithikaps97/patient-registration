@@ -8,7 +8,7 @@ import { Button, FloatingLabel } from "react-bootstrap";
 const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
-  age: yup.number().positive().integer().required("Age is required"),
+  age: yup.number().typeError("Age is required").positive().integer().required("Age is required"),
   gender: yup.string(),
   email: yup.string().email("Invalid email format").required("Email is required"),
   phone: yup.string().matches(/^\d{10}$/, "Phone must be a 10-digit number").required("Phone is required"),
@@ -62,7 +62,7 @@ function RegistrationForm({ db, onPatientAdded }: { db: any; onPatientAdded: () 
       </FloatingLabel>
 
       <FloatingLabel controlId="phone" label="Phone" className="mb-3">
-        <Form.Control {...register("phone")} type="tel" placeholder="Phone (10-digits)" />
+        <Form.Control {...register("phone")} type="tel" maxLength={10} placeholder="Phone (10-digit)" />
         <small>{errors.phone?.message}</small>
       </FloatingLabel>
 

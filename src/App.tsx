@@ -32,7 +32,7 @@ function App() {
 
   return db ? (
     <>
-    <Header/>
+    <Header hasPatients={hasPatients}/>
     <div className="container col-md-6">
     <div className="row justify-content-center align-items-center mt-5 pt-5">      
       <h2 id="form">Registration Form</h2>
