@@ -8,9 +8,9 @@ import { Button, FloatingLabel } from "react-bootstrap";
 const validationSchema = yup.object().shape({
   firstName: yup.string().required("First name is required"),
   lastName: yup.string().required("Last name is required"),
-  age: yup.number().typeError("Age is required").positive().integer().required("Age is required"),
+  age: yup.number().typeError("Age is required").positive().integer().max(100, 'Enter a valid age').required("Age is required"),
   gender: yup.string(),
-  email: yup.string().email("Invalid email format").required("Email is required"),
+  email: yup.string().matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Enter a valid email address").email("Invalid email format").required("Email is required"),
   phone: yup.string().matches(/^\d{10}$/, "Phone must be a 10-digit number").required("Phone is required"),
 });
 
@@ -20,9 +20,10 @@ function RegistrationForm({ db, onPatientAdded }: { db: any; onPatientAdded: () 
   });
 
   const onSubmit = async (data: any) => {
+    const id = Math.floor(Math.random() * 1000000); // Generates a random ID
     await db.exec(`
-      INSERT INTO patientsDetails (firstName, lastName, age, gender, email, phone) 
-      VALUES ('${data.firstName}', '${data.lastName}', ${data.age}, '${data.gender}', '${data.email}', '${data.phone}');
+      INSERT INTO patientsDetails (id, firstName, lastName, age, gender, email, phone) 
+      VALUES ('${id}','${data.firstName}', '${data.lastName}', ${data.age}, '${data.gender}', '${data.email}', '${data.phone}');
     `);
     
     onPatientAdded();
