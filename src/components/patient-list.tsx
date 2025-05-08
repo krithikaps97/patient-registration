@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "../styles/patient-list.css";
-import { Button } from "react-bootstrap";
+import { Button, }from "react-bootstrap";
+import ModalPatientForm from "./modal";
+import { refreshPatients } from "../common/refresh";
 
 export interface Patient {
   id: number;
@@ -13,17 +15,16 @@ export interface Patient {
 }
 function PatientList({ db, onPatientDeleted }: { db: any; onPatientDeleted: () => void }) {
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   
+
+  const fetchPatients = () => refreshPatients(db, setPatients);
   useEffect(() => {
-    async function fetchPatients() {
-      const result = await db.query("SELECT * FROM patientsDetails ORDER BY id DESC;");
-      setPatients(result.rows);
-    }
     fetchPatients();
   }, [db]);
 
   const handleDelete = async (id: number) => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete this patient ${id}?`);
+    const confirmDelete = window.confirm(`Are you sure you want to delete patient ${id}?`);
     
     if (confirmDelete) {
       await db.exec(`DELETE FROM patientsDetails WHERE id = ${id};`);
@@ -31,6 +32,11 @@ function PatientList({ db, onPatientDeleted }: { db: any; onPatientDeleted: () =
     }
     ;
   };
+
+  const handleEdit = (patient: any) => {
+    setSelectedPatient(patient);
+  };
+  
   
   
   return (
@@ -58,11 +64,17 @@ function PatientList({ db, onPatientDeleted }: { db: any; onPatientDeleted: () =
             <td>{p.gender}</td>
             <td>{p.email}</td>
             <td>{p.phone}</td>
-            <td><Button variant="outline-danger" onClick={() => handleDelete(p.id)}>Delete</Button></td>
+            <td className="d-flex">
+             <Button className="me-2" variant="outline-warning" onClick={() => handleEdit(p)}>Edit</Button>
+             <Button variant="outline-danger" onClick={() => handleDelete(p.id)}>Delete</Button>
+            </td>
           </tr>
         ))}
       </tbody>
     </table>
+    {selectedPatient && (
+      <ModalPatientForm db={db} patient={selectedPatient} onClose={() => {setSelectedPatient(null);fetchPatients()}} />
+    )}
     </>
     
   );

@@ -33,10 +33,10 @@ function App() {
   return db ? (
     <>
     <Header hasPatients={hasPatients}/>
-    <div className="container col-md-6">
+    <div className="container col-md-8">
     <div className="row justify-content-center align-items-center mt-5 pt-5">      
       <h2 id="form">Registration Form</h2>
-      <RegistrationForm db={db} onPatientAdded={() => {setRefresh(!refresh); checkData();}} />
+      <RegistrationForm db={db} onPatientAdded={() => {setRefresh(!refresh); checkData();}} patient={null} />
       {hasPatients && (
         <>
         <h2 id="details" className="mt-5">Registered Patients</h2>
