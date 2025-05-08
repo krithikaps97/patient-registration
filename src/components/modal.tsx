@@ -8,7 +8,7 @@ import { useState } from "react";
 function ModalPatientForm({ db, patient, onClose }: { db: any; patient: Patient | null; onClose: () => void }) {
   const [patients, setPatients] = useState<Patient[]>([]);
   const fetchPatients = () => refreshPatients(db, setPatients);
-
+  console.log(patients);
   return (
     <Modal show={!!patient} onHide={onClose}>
       <Modal.Header closeButton>

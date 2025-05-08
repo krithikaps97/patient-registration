@@ -1,3 +1,23 @@
+# Patient Registration App
+
+## Description
+This project provides a simple Patient Registration App which uses PGlite for data storage to perform CRUD operations using React + Typescript + Vite
+
+## Prerequisites
+- npm 10.8.2
+- node v20.17.0
+- react 19.1.0
+- PGlite 0.2.18
+- vite 6.3.5
+
+## Installation
+1. Clone the repository: `git clone https://github.com/krithikaps97/patient-registration.git`
+2. Navigate to the project directory: `cd patient-registration`
+3. Install dependencies: `npm install`
+
+## Usage
+1. Run the application: `npm run dev`
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

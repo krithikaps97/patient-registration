@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/components/header.tsx","./src/components/patient-list.tsx","./src/components/registration-form.tsx","./src/database/database.ts"],"version":"5.8.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/common/refresh.tsx","./src/components/header.tsx","./src/components/modal.tsx","./src/components/patient-list.tsx","./src/components/registration-form.tsx","./src/database/database.ts"],"version":"5.8.3"}
